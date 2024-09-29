@@ -1,0 +1,34 @@
+CREATE TABLE expenses (
+    id CHAR(36) PRIMARY KEY,  
+    byUser CHAR(36) NOT NULL,  
+    toUser CHAR(36) NOT NULL,  
+    groupId CHAR(36) NOT NULL,
+    amount FLOAT NOT NULL,    
+    description VARCHAR(255), 
+    settledAt DATETIME,      
+    currency ENUM('USD', 'EUR', 'INR', 'GBP', 'AUD') DEFAULT 'USD' 
+);
+
+CREATE TABLE `groups` (
+    id CHAR(36) PRIMARY KEY,                    
+    name VARCHAR(255) UNIQUE,                  
+    acceptedUsers TEXT,                        
+    invitedUsers TEXT,                         
+    currency ENUM('USD', 'EUR', 'INR', 'GBP', 'AUD') DEFAULT 'USD', 
+    imageURL VARCHAR(255)                       
+);
+
+CREATE TABLE users (
+    id CHAR(36) PRIMARY KEY,                    
+    name VARCHAR(255),                          
+    email VARCHAR(255) UNIQUE,                  
+    phone VARCHAR(20),                          
+    token VARCHAR(255) UNIQUE,                  
+    password VARCHAR(255),                     
+    currency ENUM('USD', 'EUR', 'INR', 'GBP', 'AUD') DEFAULT 'USD',
+    language VARCHAR(100) DEFAULT 'English',    
+    timezone VARCHAR(100) DEFAULT '(GMT +5:30) Indian Standard Time', 
+    imageURL VARCHAR(255)
+);
+
+
